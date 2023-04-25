@@ -2,4 +2,12 @@
 Document summarization project using GPT API
 
 
-# To do
+# Project Summary
+1. Extract text and image from doc.
+2. Input into GPT
+3. Output summary results
+
+# To-Do
+- [ ] 
+- [ ] 
+- [ ] 
