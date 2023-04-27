@@ -1,4 +1,4 @@
-# Slave-GPT
+# Edu-GPT
 Document summarization project using GPT API
 
 
