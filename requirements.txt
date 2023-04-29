@@ -1,0 +1,4 @@
+openai==0.8.0
+PyMuPDF==1.22.2
+Textract==1.6.5
+pyperclip==1.8.2
