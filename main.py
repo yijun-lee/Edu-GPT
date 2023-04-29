@@ -1,15 +1,59 @@
+import openai
 import fitz
 import tkinter
 import tkinter.font
+import pyperclip
+import threading 
+import time
+
+openai.api_key =""
 
 def pdf_to_text(pdf_path):
 	document = fitz.open(pdf_path)
-	text = []
+	text = ''
 	for page in document:
-		text.append(page.get_text())
+		text += page.get_text()
 	return text
+
+def choose_file
+
+def generate_summary(text):
+	response = openai.Completion.create(
+		engine="davinci",
+		prompt=text,
+		temperature=0.3,
+		max_tokens=100,
+		top_p=1,
+		frequency_penalty=0,
+		presence_penalty=0.5,
+		stop=["\n", " Student: ", " Teacher: "]
+	)
+	summary = response['choices'][0]['text']
+	return summary
+
+def generate_translate
+
+def generate_questions(text):
+	response = openai.Completion.create(
+		engine="davinci",
+		prompt=text,
+		temperature=0.3,
+		max_tokens=100,
+		top_p=1,
+		frequency_penalty=0,
+		presence_penalty=0.5,
+		stop=["\n", " Student: ", " Teacher: "]
+	)
+	exercises = response['choices'][0]['text']
+	return exercises
         
-   
+def generate_answers
+
+def copy_output
+
+def download_output
+
+def regenerate_output
 
 
 
