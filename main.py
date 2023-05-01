@@ -1,12 +1,12 @@
 import openai
 import fitz
-import tkinter
-import tkinter.font
+import tkinter as tk
+from tkinter import font, filedialog, messagebox
 import pyperclip
 import threading 
 import time
 
-openai.api_key =""
+openai.api_key ="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"
 
 def pdf_to_text(pdf_path):
 	document = fitz.open(pdf_path)
@@ -15,73 +15,216 @@ def pdf_to_text(pdf_path):
 		text += page.get_text()
 	return text
 
-def choose_file
+def choose_file():
+	filepath = filedialog.askopenfilename()
+	if filepath.endswith('.pdf'):
+		file_path_var.set(filepath)
+	# 	output_text.delete(1.0, tk.END)
+	else:
+		messagebox.showerror(title = 'Error', message = 'Please select valid file extension.')
 
 def generate_summary(text):
-	response = openai.Completion.create(
-		engine="davinci",
-		prompt=text,
-		temperature=0.3,
-		max_tokens=100,
-		top_p=1,
-		frequency_penalty=0,
-		presence_penalty=0.5,
-		stop=["\n", " Student: ", " Teacher: "]
-	)
-	summary = response['choices'][0]['text']
-	return summary
+    words = text.split()
+    max_words = 1000
+    prompt = " ".join(words[:max_words])
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=f"Summarize this: {prompt}",
+        temperature=0.9,
+        max_tokens=256,
+        top_p=1.0,
+        frequency_penalty=0.0,
+        presence_penalty=0.0
+    )
+    summary_output = response.choices[0].text
+    return summary_output
 
-def generate_translate
-
-def generate_questions(text):
+def generate_translate(text):
+	words = text.split()
+	max_words = 1000
+	prompt = " ".join(words[:max_words])
 	response = openai.Completion.create(
-		engine="davinci",
-		prompt=text,
-		temperature=0.3,
-		max_tokens=100,
-		top_p=1,
-		frequency_penalty=0,
-		presence_penalty=0.5,
-		stop=["\n", " Student: ", " Teacher: "]
-	)
-	exercises = response['choices'][0]['text']
-	return exercises
+        model="text-davinci-003",
+        prompt=f"Translate this in Korean: {prompt}", #Korean -> Other Languages
+        temperature=0.9,
+        max_tokens=1000,
+        top_p=1.0,
+        frequency_penalty=0.0,
+        presence_penalty=0.0
+    )
+	translate_output = response.choices[0].text
+	return translate_output
+
+def generate_question(text):
+	words = text.split()
+	max_words = 1000
+	prompt = " ".join(words[:max_words])
+	response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=f"Make 5 exercises about the text: {prompt}",
+        temperature=0.9,
+        max_tokens=1000,
+        top_p=1.0,
+        frequency_penalty=0.0,
+        presence_penalty=0.0
+    )
+	question_output = response.choices[0].text
+	return question_output
+
+def execute_summary():
+	file_path = file_path_var.get()
+	if file_path:
+		text = pdf_to_text(file_path)
+		summary = generate_summary(text)
+		summary_text.insert(tk.END, summary)
+		text_summary.set(summary)
+	else:
+		messagebox.showerror(title = 'Error', message = 'Please select file.')
+
+def execute_translate():
+	file_path = file_path_var.get()
+	if file_path:
+		text = pdf_to_text(file_path)
+		translate = generate_translate(text)
+		text_translate.set(translate)
+	else:
+		messagebox.showerror(title = 'Error', message = 'Please select file.')
+
+def execute_question():
+	file_path = file_path_var.get()
+	if file_path:
+		text = pdf_to_text(file_path)
+		question = generate_question(text)
+		text_question.set(question)
+	else:
+		messagebox.showerror(title = 'Error', message = 'Please select file.')
         
-def generate_answers
+# def generate_answers:
 
-def copy_output
+# def copy_output
 
-def download_output
+# def download_output
 
-def regenerate_output
+# def regenerate_output
 
 
 
     
 
-pdf_path = "11_Gamma.pdf"
-#text = pdf_to_text(pdf_path)
-# for i in text:
-# 	print(i)
-#gui code
-window=tkinter.Tk()
+
+
+
+
+
+#--------------gui--------------
+window=tk.Tk()
+
+text_summary = tk.StringVar()
+text_translate = tk.StringVar()
+text_question = tk.StringVar()
+file_path_var = tk.StringVar()
 
 window.title("Edu-GPT")
-window.geometry("800x1600")
+window.geometry("600x1200")
 window.resizable(False, True)
 
-font = tkinter.font.Font(family="arial", size=30)
-font1 = tkinter.font.Font(family="arial", size=20)
-head=tkinter.Label(window, text="Edu-GPT",height=3,font=font)
-head.pack(side="top")
+font1 = font.Font(family="arial", size=20)
+font2 = font.Font(size=30)
 
-paned_window1=tkinter.PanedWindow(relief="raised")
+head=tk.Label(window, text="Edu-GPT",height=3,font=font2)
+head.pack(side="top",pady=10)
+
+paned_window1=tk.PanedWindow(relief="raised")
 paned_window1.pack(side="top")
 
-head_input = tkinter.Label(window, text="File : ",font=font1)
-button_input = tkinter.Button(window, overrelief="solid",width=15)
+head_input = tk.Label(window, text="File : ",font=font1)
+name_input = tk.Label(window, text="iphone.pdf",font=font1)
+button_input = tk.Button(window, overrelief="solid",width=15,text="browse file", command=lambda:choose_file())
 paned_window1.add(head_input)
+paned_window1.add(name_input)
 paned_window1.add(button_input)
-# paned_window1.pack(side="top",fill="x")
+paned_window1.pack(side="top",pady=10)
 
+
+paned_window2=tk.PanedWindow(relief="raised")
+paned_window2.pack(side="top",pady=10)
+button_summary = tk.Button(window, overrelief="solid",width=15,text="Generate Summary",pady=3,command=lambda:execute_summary())
+label_summary_progress = tk.Label(window, text="processing...",height=0,fg="gray")
+paned_window2.add(button_summary)
+paned_window2.add(label_summary_progress)
+
+summary_frame = tk.Frame(window, relief="solid",width = 550,height=200,bd=2,padx=0)
+summary_frame.pack(side="top",pady=10)
+
+button_save = tk.Button(summary_frame, text="save",height=0)
+button_copy = tk.Button(summary_frame, text="copy",height=0)
+button_reset = tk.Button(summary_frame, text="reset",height=0)
+
+# summary_text = tk.Label(summary_frame, textvariable=text_summary)
+summary_text = tk.Text(summary_frame,width=76, height=10)
+summary_head = tk.Label(summary_frame, text="summary", font=font1, fg="gray")
+
+summary_head.place(x=0,y=3)
+button_save.place(x=410,y=5)
+button_copy.place(x=450,y=5)
+button_reset.place(x=490,y=5)
+summary_text.place(x=0,y=30)
+
+paned_window4=tk.PanedWindow(relief="raised")
+paned_window4.pack(side="top",pady=10)
+
+button_exercise = tk.Button(window, overrelief="solid",width=15,text="Generate Exercise",pady=3)
+label_exercise_progress = tk.Label(window, text="processing...",height=0,fg="gray")
+paned_window4.add(button_exercise)
+paned_window4.add(label_exercise_progress)
+
+exercise_frame = tk.Frame(window, relief="solid",width = 550,height=200,bd=2,padx=0)
+exercise_frame.pack(side="top",pady=10)
+
+button_save = tk.Button(exercise_frame, text="save",height=0)
+button_copy = tk.Button(exercise_frame, text="copy",height=0)
+button_reset = tk.Button(exercise_frame, text="reset",height=0)
+
+exercise_text = tk.Label(exercise_frame, textvariable=text_question)
+exercise_head = tk.Label(exercise_frame, text="exercise", font=font1, fg="gray")
+
+exercise_head.place(x=0,y=3)
+button_save.place(x=410,y=5)
+button_copy.place(x=450,y=5)
+button_reset.place(x=490,y=5)
+exercise_text.place(x=0,y=30)
+
+paned_window3=tk.PanedWindow(relief="raised")
+paned_window3.pack(side="top",pady=10)
+
+button_answer = tk.Button(window, overrelief="solid",width=15,text="Generate Answer",pady=3)
+label_answer_progress = tk.Label(window, text="processing...",height=0,fg="gray")
+paned_window3.add(button_answer)
+paned_window3.add(label_answer_progress)
+
+answer_frame = tk.Frame(window, relief="solid",width = 550,height=200,bd=2,padx=0)
+answer_frame.pack(side="top",pady=10)
+
+button_save = tk.Button(answer_frame, text="save", height=0)
+button_copy = tk.Button(answer_frame, text="copy", height=0)
+button_reset = tk.Button(answer_frame, text="reset", height=0)
+
+answer_text = tk.Label(answer_frame, text="ahiuhiufhaiu")
+answer_head = tk.Label(answer_frame, text="answer", font=font1, fg="gray")
+
+answer_head.place(x=0, y=3)
+button_save.place(x=410, y=5)
+button_copy.place(x=450, y=5)
+button_reset.place(x=490, y=5)
+answer_text.place(x=0, y=30)
+
+label_summary_output = tk.Label(window, text="processing...", height=0, fg="gray")
 window.mainloop()
+#---------------------gui----------------------
+
+# test
+# choose_file()
+# print(file_path_var.get())
+# target = pdf_to_text(file_path_var.get())
+# result = generate_questions(target)
+# print(result)
