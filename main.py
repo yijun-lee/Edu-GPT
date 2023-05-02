@@ -5,6 +5,7 @@ from tkinter import font, filedialog, messagebox
 import pyperclip
 import threading 
 import time
+import os
 
 openai.api_key =""
 
@@ -22,6 +23,8 @@ def choose_file():
 		summary_text.delete(1.0, tk.END)
 		translate_text.delete(1.0, tk.END)
 		exercise_text.delete(1.0, tk.END)
+		file_name_var.set(os.path.basename(filepath))
+
 	else:
 		messagebox.showerror(title = 'Error', message = 'Please select valid file extension.')
 
@@ -124,13 +127,15 @@ text_summary = tk.StringVar()
 text_translate = tk.StringVar()
 text_question = tk.StringVar()
 file_path_var = tk.StringVar()
+file_name_var = tk.StringVar()
 
 window.title("Edu-GPT")
 window.geometry("600x1400")
-window.resizable(False, True)
+window.resizable(True, True)
 
 font1 = font.Font(family="arial", size=20)
 font2 = font.Font(size=30)
+font3 = font.Font(family="arial", size=10)
 
 head=tk.Label(window, text="Edu-GPT",height=3,font=font2)
 head.pack(side="top",pady=10)
@@ -139,12 +144,12 @@ paned_window1=tk.PanedWindow(relief="raised")
 paned_window1.pack(side="top")
 
 head_input = tk.Label(window, text="File : ",font=font1)
-name_input = tk.Label(window, textvariable = file_path_var, font=font1)
-button_input = tk.Button(window, overrelief="solid",width=15,text="browse file", command=lambda:choose_file())
+name_input = tk.Label(window, textvariable = file_name_var, font=font3, width=30)
+button_input = tk.Button(window, overrelief="solid",width=7,text="browse file", command=lambda:choose_file())
 paned_window1.add(head_input)
 paned_window1.add(name_input)
 paned_window1.add(button_input)
-paned_window1.pack(side="top",pady=10)
+paned_window1.pack(side="top",padx=10,pady=10)
 
 #--------------------summary-------------------------
 paned_window2=tk.PanedWindow(relief="raised")
