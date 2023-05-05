@@ -3,11 +3,12 @@ import fitz
 import tkinter as tk
 from tkinter import font, filedialog, messagebox
 import pyperclip
-import threading 
+import threading
 import time
 import os
 
-openai.api_key =""
+openai.api_key = "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"
+
 
 def pdf_to_text(pdf_path):
 	document = fitz.open(pdf_path)
@@ -15,6 +16,7 @@ def pdf_to_text(pdf_path):
 	for page in document:
 		text += page.get_text()
 	return text
+
 
 def choose_file():
 	filepath = filedialog.askopenfilename()
@@ -26,23 +28,29 @@ def choose_file():
 		file_name_var.set(os.path.basename(filepath))
 
 	else:
-		messagebox.showerror(title = 'Error', message = 'Please select valid file extension.')
+		messagebox.showerror(
+		    title='Error', message='Please select valid file extension.')
+
 
 def generate_summary(text):
-    words = text.split()
-    max_words = 1000
-    prompt = " ".join(words[:max_words])
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=f"Summarize this: {prompt}",
-        temperature=0.9,
-        max_tokens=1000,
-        top_p=1.0,
-        frequency_penalty=0.0,
-        presence_penalty=0.0
-    )
-    summary_output = response.choices[0].text
-    return summary_output
+	words = text.split()
+	# max_words = 1000
+	summary_output = ''
+	token = len(words)
+	split_cnt = token // 1500
+	for i in range(1, split_cnt + 1):
+		prompt = " ".join(words[(i-1) * 1500:1500 * i])
+		response = openai.Completion.create(
+		model="text-davinci-003",
+			prompt=f"Summarize this: {prompt}",
+			temperature=0.9,
+			max_tokens=300,
+			top_p=1.0,
+			frequency_penalty=0.0,
+			presence_penalty=0.0
+		)
+		summary_output += response.choices[0].text
+	return summary_output
 
 def generate_translate(text):
 	words = text.split()
