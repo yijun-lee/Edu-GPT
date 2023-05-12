@@ -1,0 +1,283 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    display: flex;
+    clear: both;
+}
+
+p,h1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.navi{
+    height: 100vh;
+    width: 250px;
+    background-color: #202123;
+    float: left;
+    flex-shrink: 0;
+}
+
+.oper{
+    height: 100vh;
+    width: 450px;
+    float: left;
+    background-color: #2B2C2F;
+    padding-left: 13px;
+    padding-right: 14px;
+    flex-shrink: 0;
+}
+
+.main{
+    height: 100vh;
+    position: absolute; 
+    left: 700px;
+    right: 0;
+    /* display: flex; */
+    /* flex-grow: 1; */
+    float: left;
+    background-color: #343541;
+}
+
+.subMenuList{
+    list-style-type: none;
+    width: 250px;
+    height: 282px;
+    position:absolute;
+    bottom: 0;
+    border-top: 0.1px solid whitesmoke;
+}
+
+.subMenu{
+    width: 250px;
+    height: 56px;
+    border: 1px solid #202123;
+}
+
+.icon{
+    width: 15px;
+    margin-top: 20px;
+    margin-left: 28px;
+    float: left;
+}
+
+.icon_conversation{
+    width: 15px;
+    margin-top: 13px;
+    margin-left: 28px;
+    float: left;
+}
+.subMenu > a{
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.subMenu > a > p{
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.conversationList{
+    list-style-type: none;
+    width: 250px;
+    /* background-color: aliceblue; */
+}
+
+.conversation{
+    height: 56px;
+    width: 250px;
+    /* border: 1px solid white; */
+}
+
+.conversation > a{
+    text-decoration: none;
+}
+
+.conversation > a > p{
+    /* margin-top: 20px;
+    margin-left: 50px; */
+    margin: auto auto;
+    margin-top: 8px;
+    font-size: 14px;
+    width: 225px;
+    height: 40px;
+    border-radius: 10px;
+    /* border: 1px solid blue; */
+    padding-top: 13px;
+    padding-left: 40px;
+}
+
+.dataType{
+    background-color: #202123;
+    border-color: #444654;
+    border-radius: 8px;
+    margin-left: 12px;
+    margin-top: 10px;
+    width: 225px;
+    height: 44px;
+    font-size: 14px;
+    color: #FFFFFF;
+    padding-left: 40px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+}
+
+
+/* oper */
+.dataName{
+    font-size: 28px;
+    margin-top: 79px;
+}
+
+.dataText{
+    margin-top: 30px;
+    width: 423px;
+    height: 200px;
+    resize: none;
+    background-color: #444654;
+    border-radius: 15px;
+    border-color: #2B2C2F;
+    padding: 12px;
+    color: white;
+}
+
+.operName{
+    font-size: 28px;
+    margin-top: 30px;
+}
+
+.operType{
+    background-color: #2B2C2F;
+    border-color: #444654;
+    border-radius: 8px;
+    margin-top: 10px;
+    width: 423px;
+    height: 44px;
+    font-size: 18px;
+    color: #FFFFFF;
+    /* text-align: center; */
+    padding-left: 40px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+}
+
+.summaryButton{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 80px;
+    width: 423px;
+    height: 59px;
+    background-color: #444654;
+    border: none;
+    color: white;
+    font-size: 23px;
+    border-radius: 10px;
+}
+
+/* main */
+.request{
+    width: 100%;
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.mainRequestContent{
+    clear: both;
+    margin: auto;
+    width: 550px;
+    height: auto;
+    overflow: hidden;
+}
+
+.mainResponseContent{
+    clear: both;
+    margin: auto;
+    width: 550px;
+    height: auto;
+    overflow: hidden;
+}
+
+.profile{
+    width: 30px;
+    border-radius: 5px;
+    float:left;
+    margin-right: 10px;
+}
+
+.question{
+    width: 474px;
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+    font-weight: 300;
+}
+
+.mainButton{
+    width: 20px;
+    height: 20px;
+}
+
+.response{
+    width: 100%;
+    height: auto;
+    background-color: #444654;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.mainOper{
+    width: 100%;
+    height: 200px;
+
+    position:absolute;
+    bottom: 0;
+    /* margin-left: 700px; */
+}
+
+.generateButton{
+    width: 187px;
+    height: 44px;
+    color: white;
+    font-size: 15px;
+    font-family: 'Inter';
+    background-color: #343541;
+    border: none;
+    border: 1px solid ;
+    border-color: #9A9B9F;
+    border-radius: 6px;
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.qnaName{
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+.qna{
+    margin: auto;
+    margin-top: 10px;
+    display: block;
+    width: 500px;
+    height: 40px;
+    border-radius: 6px;
+    background: #444654;
+    align-items: center;
+    padding: 12px;
+    color: white;
+    border: none;
+}
+
+
