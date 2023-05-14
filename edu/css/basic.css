@@ -168,7 +168,78 @@ p,h1{
     font-weight: 500;
 }
 
-.summaryButton{
+.exerciseOption{
+    width: 423px;
+    height: 200px;
+    position: absolute;
+    top: 470px;
+    display: none;
+}
+
+.quizTypeName{
+    float: left;
+    font-size: 28px;
+    display: block;
+    text-align: left;
+
+    margin-top: 40px;
+}
+
+.difficultyName{
+    font-size: 28px;
+    margin-left: 30px;
+    display: block;
+    text-align: right;
+    margin-right: 95px;
+    margin-top: 40px;
+}
+
+.quizType{
+    background-color: #2B2C2F;
+    border-color: #444654;
+    border-radius: 8px;
+    margin-top: 10px;
+    width: 190px;
+    height: 44px;
+    font-size: 18px;
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    /* text-align: center; */
+    padding-left: 20px;
+}
+
+.difficultyType{
+    background-color: #2B2C2F;
+    border-color: #444654;
+    border-radius: 8px;
+    margin-top: 10px;
+    width: 190px;
+    height: 44px;
+    font-size: 18px;
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    padding-left: 20px;
+    margin-left: 28.6px;
+}
+
+.translationOption{
+    width: 423px;
+    height: 200px;
+    position: absolute;
+    top: 470px;
+    display: none;
+}
+
+
+#after{
+    margin-right: 140px;
+}
+
+.generateButton{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -182,6 +253,7 @@ p,h1{
     border-radius: 10px;
 }
 
+
 /* main */
 .request{
     width: 100%;
@@ -193,7 +265,7 @@ p,h1{
 .mainRequestContent{
     clear: both;
     margin: auto;
-    width: 550px;
+    width: 560px;
     height: auto;
     overflow: hidden;
 }
@@ -201,7 +273,7 @@ p,h1{
 .mainResponseContent{
     clear: both;
     margin: auto;
-    width: 550px;
+    width: 560px;
     height: auto;
     overflow: hidden;
 }
@@ -214,7 +286,7 @@ p,h1{
 }
 
 .question{
-    width: 474px;
+    width: 454px;
     float: left;
     margin-right: 10px;
     margin-top: 5px;
@@ -222,8 +294,26 @@ p,h1{
 }
 
 .mainButton{
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
+    background-color: transparent;
+    border: none;
+    /* background-image: url("icon.png"); */
+}
+
+#editButton
+{
+    margin-left: 30px;
+}
+
+#goodButton{
+    float: left;
+    margin-right: 10px;
+}
+
+.buttonImage{
+    width: 17px;
+    height: 17px;
 }
 
 .response{

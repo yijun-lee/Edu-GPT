@@ -61,12 +61,50 @@
             </form>
             <h1 class = "operName">Type</h1>
             <form>
-                <select name = "oper" class="operType">
-                    <option value="summarize">Summarize</option>
-                    <option value="exercise">Exercise</option>
-                    <option value="translate">Translate</option>
+                <select name = "oper" class="operType" onchange="showDetail(this.value)">
+                    <option value=".summaryOption">Summarize</option>
+                    <option value=".exerciseOption">Exercise</option>
+                    <option value=".translationOption">Translate</option>
                 </select>
-                <button class = "summaryButton">Generate Summary</button>
+                <div class="exerciseOption">
+                    <h1 class="quizTypeName">Quiz Type</h1>
+                    <h1 class="difficultyName">Difficulty</h1>
+                    <select name = "quizType" class="quizType">
+                        <option value="tf">True or False</option>
+                        <option value="multile">Multiple choices</option>
+                        <option value="short">Short Answers</option>
+                        <option value="long">Long Answers</option>
+                        <option value="blank">Fill in the blank</option>
+                    </select>
+                    <select name = "difficultyType" class="difficultyType">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="difficult">Difficult</option>
+                    </select>
+                    <button class = "generateButton">Generate Exercise / Quiz</button>
+                </div>
+                <div class="translationOption">
+                    <h1 class="quizTypeName" id="before">Before</h1>
+                    <h1 class="difficultyName" id="after">After</h1>
+                    <select name = "before" class="quizType" >
+                        <option value="detect">Detect Mode</option>
+                        <option value="english">English</option>
+                        <option value="korean">Korean</option>
+                        <option value="japanese">Japanese</option>
+                        <option value="chinese">Chinese</option>
+                    </select>
+                    <select name = "after" class="difficultyType">
+                        <option value="english">English</option>
+                        <option value="korean">Korean</option>
+                        <option value="japanese">Japanese</option>
+                        <option value="chinese">Chinese</option>
+                    </select>
+                    <button class = "generateButton">Generate Translation</button>
+                </div>
+                <div class="summaryOption">
+                    <button class = "generateButton" id = "Summary">Generate Summary</button>
+                </div>
+                
             </form>
         </div>
         <div class = main>
@@ -74,15 +112,19 @@
                 <div class="mainRequestContent">
                     <img class="profile" src="person.png">
                     <p class="question">영어로 아이폰의 역사에 대해 알려줘</p>
-                    <button class="mainButton">edit</button>
+                    <button class="mainButton" id="editButton"><img src="icon.png" class="buttonImage"></button>
                 </div>
-
             </div>
             <div class="response">
                 <div class="mainResponseContent">
                     <img class="profile" src="person.png">
                     <p class="question">The iPhone is a mobile smartphone first released by Apple in 2007. Prior to the iPhone, mobile phones were primarily used for making calls and sending text messages. However, the iPhone revolutionized the mobile phone industry by introducing a touch screen interface, a powerful mobile operating system, and the ability to access the internet and use third-party apps.</p>
-                    <button class="mainButton">edit</button>
+                    <button class="mainButton" id="goodButton">
+                        <img src="icon.png" class="buttonImage">
+                    </button>
+                    <button class="mainButton">
+                        <img src="icon.png" class="buttonImage">
+                    </button>
                 </div>
             </div>
             <div class="mainOper">
@@ -96,7 +138,13 @@
 
         </div>
     </div>
-
-    
+    <script>
+        function showDetail(operType){
+            document.querySelector('.summaryOption').style.display="none";
+            document.querySelector('.exerciseOption').style.display="none";
+            document.querySelector('.translationOption').style.display="none";
+            document.querySelector(operType).style.display="block";
+        }
+    </script>
 </body>
 </html>
