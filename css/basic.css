@@ -168,11 +168,17 @@ p,h1{
     font-weight: 500;
 }
 
+
+
 .exerciseOption{
     width: 423px;
     height: 200px;
     position: absolute;
     top: 470px;
+    display: none;
+}
+
+.extractOption{
     display: none;
 }
 
