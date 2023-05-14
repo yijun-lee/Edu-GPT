@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=chrome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/basic.css">
+    <title>generative AI</title>
+</head>
+<body>
+    <div class="container">
+        <div class = navi>
+            <form>
+                <select name = "file" class="dataType">
+                    <option value="text">Text</option>
+                    <option value="files">File</option>
+                    <option value="audio">Audio</option>
+                </select>
+            </form>
+            <ul class="conversationList">
+                <li class = "conversation">
+                    <img src="icon.png" class="icon_conversation">
+                    <a href="xxx"><p>아이폰의 역사</p></a>
+                </li>
+                <li class = "conversation">
+                    <img src="icon.png" class="icon_conversation">
+                    <a href="xxx"><p>List에서 데이터 가져오기</p></a>
+                </li>
+                <li class = "conversation">
+                    <img src="icon.png" class="icon_conversation">
+                    <a href="xxx"><p>부동 소수점 계산</p></a>
+                </li>
+            </ul>
+            <ul class="subMenuList">
+               <li class="subMenu">
+                    <img src="icon.png" class="icon">
+                    <a href="xxx" ><p>대화 초기화</p></a>
+               </li> 
+               <li class="subMenu">
+                <img src="icon.png" class="icon">
+                <a href="xxx"><p>Light mode</p></a>
+               </li> 
+               <li class="subMenu">
+                <img src="icon.png" class="icon">
+                <a href="xxx"><p>내정보</p></a>
+               </li> 
+               <li class="subMenu">
+                <img src="icon.png" class="icon">
+                <a href="xxx"><p>Update & Q & A</p></a>
+               </li> 
+               <li class="subMenu">
+                <img src="icon.png" class="icon">
+                <a href="xxx"><p>로그아웃</p></a>
+               </li> 
+            </ul>
+        </div>
+        <div class = oper>
+            <h1 class = "dataName">Text</h1>
+            <form action="post">
+                <textarea class="dataText"></textarea>
+            </form>
+            <h1 class = "operName">Type</h1>
+            <form>
+                <select name = "oper" class="operType" onchange="showDetail(this.value)">
+                    <option value=".summaryOption">요약</option>
+                    <option value=".exerciseOption">연습문제</option>
+                    <option value=".translationOption">번역</option>
+                </select>
+                <div class="exerciseOption">
+                    <h1 class="quizTypeName">문제 유형</h1>
+                    <h1 class="difficultyName">난이도</h1>
+                    <select name = "quizType" class="quizType">
+                        <option value="tf">True or False</option>
+                        <option value="multile">객관식</option>
+                        <option value="short">주관식</option>
+                        <option value="long">서술형</option>
+                        <option value="blank">빈칸 채우기</option>
+                    </select>
+                    <select name = "difficultyType" class="difficultyType">
+                        <option value="easy">쉬움</option>
+                        <option value="medium">중간</option>
+                        <option value="difficult">어려움</option>
+                    </select>
+                    <button class = "generateButton">문제 생성</button>
+                </div>
+                <div class="translationOption">
+                    <h1 class="quizTypeName" id="before">Before</h1>
+                    <h1 class="difficultyName" id="after">After</h1>
+                    <select name = "before" class="quizType" >
+                        <option value="detect">언어감지</option>
+                        <option value="english">영어</option>
+                        <option value="korean">한글</option>
+                        <option value="japanese">일본어</option>
+                        <option value="chinese">중국어</option>
+                    </select>
+                    <select name = "after" class="difficultyType">
+                        <option value="english">영어</option>
+                        <option value="korean">한글</option>
+                        <option value="japanese">일본어</option>
+                        <option value="chinese">중국어</option>
+                    </select>
+                    <button class = "generateButton">번역 생성</button>
+                </div>
+                <div class="summaryOption">
+                    <button class = "generateButton" id = "Summary">요약 생성</button>
+                </div>
+            </form>
+        </div>
+        <div class = main>
+            <div class="request">
+                <div class="mainRequestContent">
+                    <img class="profile" src="person.png">
+                    <p class="question">영어로 아이폰의 역사에 대해 알려줘</p>
+                    <button class="mainButton" id="editButton"><img src="icon.png" class="buttonImage"></button>
+                </div>
+            </div>
+            <div class="response">
+                <div class="mainResponseContent">
+                    <img class="profile" src="person.png">
+                    <p class="question">The iPhone is a mobile smartphone first released by Apple in 2007. Prior to the iPhone, mobile phones were primarily used for making calls and sending text messages. However, the iPhone revolutionized the mobile phone industry by introducing a touch screen interface, a powerful mobile operating system, and the ability to access the internet and use third-party apps.</p>
+                    <button class="mainButton" id="goodButton">
+                        <img src="icon.png" class="buttonImage">
+                    </button>
+                    <button class="mainButton">
+                        <img src="icon.png" class="buttonImage">
+                    </button>
+                </div>
+            </div>
+            <div class="mainOper">
+                <form class="qnaForm">
+                    <button class="generateButton">다시 생성</button>
+                    <h1 class="qnaName">Q & A</h1>
+                    <input type="text" class="qna" placeholder="무엇이든 요청하세요!">
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+        function showDetail(operType){
+            document.querySelector('.summaryOption').style.display="none";
+            document.querySelector('.exerciseOption').style.display="none";
+            document.querySelector('.translationOption').style.display="none";
+            document.querySelector(operType).style.display="block";
+        }
+    </script>
+</body>
+</html>
