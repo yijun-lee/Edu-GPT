@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="/css/storeDataSendAjax.js"></script>
+    <form class="card-text">
+        <div class="col-12">
+            <div class="input-group mb-3">
+                <input id="input" placeholder="Please enter text" type="text" class="form-control">
+                <button class="btn btn-outline-secondary" type="button" onclick="dataSend()">submit</button>
+            </div>
+        </div>
+    </form>
+    <div id="resultDiv">
+        <p th:if="${msg2}!=null" th:text="${msg2}"></p>
+        <p th:if="${msg}!=null" th:text="${msg}"></p>
+    </div>
+</body>
+</html>

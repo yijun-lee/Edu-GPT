@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=chrome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="css/basic.css">
+<!--    <link rel="stylesheet" href="basic.css">-->
+<!--     <link rel="stylesheet" href="/Users/koomin/구민/coding/Learning/spring_prac/ecommerce_test/src/main/resources/static/css/basic.css"> -->
+    <title>generative AI</title>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="/css/storeDataSendAjax.js"></script>
+<script src="/css/summary_doc_ajax.js"></script>
+<script src="/css/chat_qna_ajax.js"></script>
+<script src="/css/make_quiz_ajax.js"></script>
+<script src="/css/scoring_quiz_ajax.js"></script>
+<script src="/css/make_ppt_ajax.js"></script>
+<div class="container">
+    <div class = navi>
+        <form>
+            <select name = "file" class="dataType">
+                <option value="text">Text</option>
+                <option value="files">Files</option>
+                <option value="audio">Audio</option>
+            </select>
+        </form>
+        <ul class="conversationList">
+            <li class = "conversation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="icon_conversation" viewBox="0 0 16 16">
+                    <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                </svg>
+                <a href="xxx"><p>Conversation</p></a>
+            </li>
+            <li class = "conversation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="icon_conversation" viewBox="0 0 16 16">
+                    <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                </svg>
+                <a href="xxx"><p>Conversation</p></a>
+            </li>
+            <li class = "conversation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="icon_conversation" viewBox="0 0 16 16">
+                    <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                </svg>
+                <a href="xxx"><p>Conversation</p></a>
+            </li>
+        </ul>
+        <ul class="subMenuList">
+            <li class="subMenu">
+                <!-- <img src="trash.png" class="icon"> -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="icon" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                </svg>
+                <a href="xxx" ><p>Clear conversation</p></a>
+            </li>
+            <li class="subMenu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="icon" viewBox="0 0 16 16">
+                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                </svg>
+                <a href="xxx"><p>Light mode</p></a>
+            </li>
+            <li class="subMenu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="icon" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                </svg>
+                <a href="xxx"><p>My account</p></a>
+            </li>
+            <li class="subMenu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="icon" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                </svg>
+                <a href="xxx"><p>Update & FAQ</p></a>
+            </li>
+            <li class="subMenu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="icon" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                </svg>
+                <a href="xxx"><p>Log out</p></a>
+            </li>
+        </ul>
+    </div>
+    <div class = oper>
+        <h1 class = "dataName">Copy & Paste Text</h1>
+        <form>
+            <textarea class="dataText" id="inputPath"></textarea>
+            <h1 class = "operName">Type</h1>
+            <select name = "oper" class="operType" onchange="showDetail(this.value)">
+                <option value="summary">Summarize</option>
+                <option value="exercise">Exercise</option>
+                <option value="translation">Translate</option>
+                <option value="makeppt">make PPT</option>
+            </select>
+            <div class="exerciseOption">
+                <h1 class="quizTypeName">Quiz Type</h1>
+                <h1 class="difficultyName">Difficulty</h1>
+                <select name = "quizType" class="quizType" id="quizType">
+                    <option value="2">True or False</option>
+                    <option value="0">Multiple choices</option>
+                    <option value="short">Short Answers</option>
+                    <option value="long">Long Answers</option>
+                    <option value="blank">Fill in the blank</option>
+                </select>
+                <select name = "difficultyType" class="difficultyType" id="difficultyType">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="difficult">Difficult</option>
+                </select>
+                <button class = "generateButton" type="button" onclick="make_quiz_ajax()">Generate Exercise / Quiz</button>
+            </div>
+            <div class="translationOption">
+                <h1 class="quizTypeName" id="before">Before</h1>
+                <h1 class="difficultyName" id="after">After</h1>
+                <select name = "before" class="quizType" >
+                    <option value="detect">Detect Mode</option>
+                    <option value="english">English</option>
+                    <option value="korean">Korean</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="chinese">Chinese</option>
+                </select>
+                <select name = "after" class="difficultyType">
+                    <option value="english">English</option>
+                    <option value="korean">Korean</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="chinese">Chinese</option>
+                </select>
+                <button class = "generateButton" type="button">Generate Translation</button>
+            </div>
+            <div class="summaryOption">
+                <button class = "generateButton" id = "Summary" type="button" onclick="summary_doc_ajax()">Generate Summary</button>
+            </div>
+            <div class="makepptOption">
+                <p class="ppt_input_info">페이지 장수</p>
+                <input type="number" class="ppt_input" id="pptPageCnt">
+                <p class="ppt_input_info">발표대상</p>
+                <input type="text" class="ppt_input" id="pptTarget">
+                <p class="ppt_input_info">ppt 제목</p>
+                <input type="text" class="ppt_input" id="pptHead">
+                <p class="ppt_input_info">ppt 부제목</p>
+                <input type="text" class="ppt_input" id="pptSubHead">
+                <p class="ppt_input_info">발표자 이름</p>
+                <input type="text" class="ppt_input" id="pptPresenter">
+                <button class = "generateButton" id = "Correction" type="button" onclick="make_ppt_ajax()">Generate Correction</button>
+            </div>
+
+        </form>
+    </div>
+    <div class = "main">
+        <div class = "main_summary" id="resultDiv">
+            <div class = "summary_section">
+                <h1 class="oper_head">요약</h1>
+                <p class="oper_text" id = "sum_text" th:text = "${summary}">이 글은 컴퓨터에 관한 글이다.</p>
+            </div>
+            <div class="qna_div" id="qna_section">
+    <!--            <div class="request">-->
+    <!--                <div class="mainRequestContent">-->
+    <!--                    <img class="profile" src="person.png">-->
+    <!--                    <p class="question" th:text = "${request}" id="quest">영어로 아이폰의 역사에 대해 알려줘</p>-->
+    <!--                    <button class="mainButton" id="editButton"><img src="icon.png" class="buttonImage"></button>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="response">-->
+    <!--                <div class="mainResponseContent">-->
+    <!--                    <img class="profile" src="person.png">-->
+    <!--                    <p class="question" th:text = "${answer}" id="response">The iPhone is a mobile smartphone first released by Apple in 2007. Prior to the iPhone, mobile phones were primarily used for making calls and sending text messages. However, the iPhone revolutionized the mobile phone industry by introducing a touch screen interface, a powerful mobile operating system, and the ability to access the internet and use third-party apps.</p>-->
+    <!--                    <button class="mainButton" id="goodButton">-->
+    <!--                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="buttonImage" viewBox="0 0 16 16">-->
+    <!--                            <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>-->
+    <!--                        </svg>-->
+    <!--                    </button>-->
+    <!--                    <button class="mainButton">-->
+    <!--                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="buttonImage" viewBox="0 0 16 16">-->
+    <!--                            <path d="M8.864 15.674c-.956.24-1.843-.484-1.908-1.42-.072-1.05-.23-2.015-.428-2.59-.125-.36-.479-1.012-1.04-1.638-.557-.624-1.282-1.179-2.131-1.41C2.685 8.432 2 7.85 2 7V3c0-.845.682-1.464 1.448-1.546 1.07-.113 1.564-.415 2.068-.723l.048-.029c.272-.166.578-.349.97-.484C6.931.08 7.395 0 8 0h3.5c.937 0 1.599.478 1.934 1.064.164.287.254.607.254.913 0 .152-.023.312-.077.464.201.262.38.577.488.9.11.33.172.762.004 1.15.069.13.12.268.159.403.077.27.113.567.113.856 0 .289-.036.586-.113.856-.035.12-.08.244-.138.363.394.571.418 1.2.234 1.733-.206.592-.682 1.1-1.2 1.272-.847.283-1.803.276-2.516.211a9.877 9.877 0 0 1-.443-.05 9.364 9.364 0 0 1-.062 4.51c-.138.508-.55.848-1.012.964l-.261.065zM11.5 1H8c-.51 0-.863.068-1.14.163-.281.097-.506.229-.776.393l-.04.025c-.555.338-1.198.73-2.49.868-.333.035-.554.29-.554.55V7c0 .255.226.543.62.65 1.095.3 1.977.997 2.614 1.709.635.71 1.064 1.475 1.238 1.977.243.7.407 1.768.482 2.85.025.362.36.595.667.518l.262-.065c.16-.04.258-.144.288-.255a8.34 8.34 0 0 0-.145-4.726.5.5 0 0 1 .595-.643h.003l.014.004.058.013a8.912 8.912 0 0 0 1.036.157c.663.06 1.457.054 2.11-.163.175-.059.45-.301.57-.651.107-.308.087-.67-.266-1.021L12.793 7l.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581 0-.211-.027-.414-.075-.581-.05-.174-.111-.273-.154-.315l-.353-.354.353-.354c.047-.047.109-.176.005-.488a2.224 2.224 0 0 0-.505-.804l-.353-.354.353-.354c.006-.005.041-.05.041-.17a.866.866 0 0 0-.121-.415C12.4 1.272 12.063 1 11.5 1z"/>-->
+    <!--                        </svg>-->
+    <!--                    </button>-->
+    <!--                </div>-->
+    <!--            </div>-->
+            </div>
+
+            <div class="mainOper">
+                <form class="qnaForm">
+                    <button class="generateButton" type="button" onclick="dataSend()">Regenerate response</button>
+                    <h1 class="qnaName">Q & A</h1>
+                    <div class="qna_input">
+                        <input id="input" placeholder="Please enter text" type="text" class="qna">
+                        <button class="input_btn" type="button" onclick="chat_qna_ajax()">send</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="main_exercise">
+            <form>
+                <div class="quiz_section" id="quiz_section">
+<!--                    <div class = "quiz_detail">-->
+<!--                        <p>1. 이건 뭐냐?</p>-->
+<!--                        <p>a. 재밋는거</p>-->
+<!--                        <p>b. 재밋는거</p>-->
+<!--                        <p>c. 재밋는거</p>-->
+<!--                        <p>d. 재밋는거</p>-->
+<!--                        <select name = "1" class="answer_list">-->
+<!--                            <option value="a">a</option>-->
+<!--                            <option value="b">b</option>-->
+<!--                            <option value="c">c</option>-->
+<!--                            <option value="d">d</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <div class = "quiz_detail">-->
+<!--                        <p>1. 이게 맞냐?</p>-->
+<!--                        <p>True</p>-->
+<!--                        <p>False</p>-->
+<!--                        <select name = "1" class="answer_list">-->
+<!--                            <option value="True">True</option>-->
+<!--                            <option value="False">False</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+                </div>
+                <div class = quiz_oper>
+                        <button class="input_btn" type="button" onclick="scoring_quiz_ajax()">submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="main_makeppt">
+            <h1>ppt 만들기</h1>
+        </div>
+    </div>
+</div>
+<script>
+        function showDetail(operType){
+            document.querySelector('.summaryOption').style.display="none";
+            document.querySelector('.exerciseOption').style.display="none";
+            document.querySelector('.translationOption').style.display="none";
+            document.querySelector('.makepptOption').style.display="none";
+            document.querySelector('.main_summary').style.display="none";
+            document.querySelector('.main_exercise').style.display="none";
+            document.querySelector('.main_makeppt').style.display="none";
+            document.querySelector('.' + operType+ 'Option').style.display="block";
+            document.querySelector('.' + 'main_' + operType).style.display="block";
+        }
+    </script>
+</body>
+</html>

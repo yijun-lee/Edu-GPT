@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=chrome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/basic.css">
+    <title>generative AI</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="/css/storeDataSendAjax.js"></script>
+    <div class="container">
+        <div class = navi>
+            <form>
+                <select name = "file" class="dataType">
+                    <option value="text">Text</option>
+                    <option value="files">Files</option>
+                    <option value="audio">Audio</option>
+                </select>
+            </form>
+            <ul class="conversationList">
+                <li class = "conversation">
+                    <img src="icon.png" class="icon_conversation">
+                    <a href="xxx"><p>Conversation</p></a>
+                </li>
+                <li class = "conversation">
+                    <img src="icon.png" class="icon_conversation">
+                    <a href="xxx"><p>Conversation</p></a>
+                </li>
+                <li class = "conversation">
+                    <img src="icon.png" class="icon_conversation">
+                    <a href="xxx"><p>Conversation</p></a>
+                </li>
+            </ul>
+            <ul class="subMenuList">
+               <li class="subMenu">
+                    <img src="icon.png" class="icon">
+                    <a href="xxx" ><p>Clear conversation</p></a>
+               </li> 
+               <li class="subMenu">
+                <img src="icon.png" class="icon">
+                <a href="xxx"><p>Light mode</p></a>
+               </li> 
+               <li class="subMenu">
+                <img src="icon.png" class="icon">
+                <a href="xxx"><p>My account</p></a>
+               </li> 
+               <li class="subMenu">
+                <img src="icon.png" class="icon">
+                <a href="xxx"><p>Update & FAQ</p></a>
+               </li> 
+               <li class="subMenu">
+                <img src="icon.png" class="icon">
+                <a href="xxx"><p>Log out</p></a>
+               </li> 
+            </ul>
+        </div>
+        <div class = oper>
+            <h1 class = "dataName">Copy & Paste Text</h1>
+            <form action="post">
+                <textarea class="dataText"></textarea>
+            </form>
+            <h1 class = "operName">Type</h1>
+            <form>
+                <select name = "oper" class="operType">
+                    <option value="summarize">Summarize</option>
+                    <option value="exercise">Exercise</option>
+                    <option value="translate">Translate</option>
+                </select>
+                <button class = "summaryButton">Generate Summary</button>
+            </form>
+        </div>
+        <div class = main id="resultDiv">
+            <div class="request">
+                <div class="mainRequestContent" >
+                    <img class="profile" src="person.png">
+                    <div><p class="question" th:text = "${request}">영어로 아이폰의 역사에 대해 알려줘</p></div>
+                    <button class="mainButton">edit</button>
+                </div>
+
+            </div>
+            <div class="response">
+                <div class="mainResponseContent">
+                    <img class="profile" src="person.png">
+                    <p class="question" th:text = "${answer}">The iPhone is a mobile smartphone first released by Apple in 2007. Prior to the iPhone, mobile phones were primarily used for making calls and sending text messages. However, the iPhone revolutionized the mobile phone industry by introducing a touch screen interface, a powerful mobile operating system, and the ability to access the internet and use third-party apps.</p>
+                    <button class="mainButton">edit</button>
+                </div>
+            </div>
+<!--            <div >-->
+<!--                <p th:if="${msg2}!=null" th:text="${msg2}"></p>-->
+<!--                <p th:if="${msg}!=null" th:text="${msg}"></p>-->
+<!--            </div>-->
+
+            <div class="mainOper">
+<!--                <form class="qnaForm" action="/gpt/quest" method="post">-->
+                <form class="qnaForm">
+
+                    <button class="generateButton" type="button" onclick="dataSend()">Regenerate response</button>
+                    <h1 class="qnaName">Q & A</h1>
+                    <input id="input" placeholder="Please enter text" type="text" class="qna">
+<!--                    <input type="text" class="qna" placeholder="Send a message." name="quest" >-->
+                </form>
+
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+        function showDetail(operType){
+            document.querySelector('.summaryOption').style.display="none";
+            document.querySelector('.exerciseOption').style.display="none";
+            document.querySelector('.translationOption').style.display="none";
+            document.querySelector('.extractOption').style.display="none";
+            document.querySelector(operType).style.display="block";
+        }
+    </script>
+    
+</body>
+</html>
